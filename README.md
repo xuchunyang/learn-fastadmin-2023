@@ -27,6 +27,11 @@ https://learn-fastadmin-2023.hcloudcs.com/
 - 账号：admin
 - 密码：admin@admin.com
 
+### 前台测试账号
+
+- 账号：example
+- 密码：example@example.com
+
 ## 本地部署
 
 FastAdmin 从 Git 源代码部署有困难，比如官方文档没有介绍，只有从压缩包部署才有介绍。我自己在本地开发后，部署也是从压缩包部署的，因为源代码中缺少了部署文件，比如
