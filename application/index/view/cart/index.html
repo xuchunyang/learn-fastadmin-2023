@@ -92,12 +92,12 @@
             <?php } ?>
             </tbody>
         </table>
-        <div class="settle">
+        <form class="settle" method="post" action="{:url('/index/cart/settle')}">
             <div>
                 总价：<span class="total-price">¥<?= $total ?></span>
             </div>
             <button class="btn btn-danger settle-btn">去结算</button>
-        </div>
+        </form>
     </div>
 
 </main>

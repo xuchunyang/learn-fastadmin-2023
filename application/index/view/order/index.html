@@ -1,0 +1,123 @@
+<style>
+    .order {
+        background-color: #fff;
+        padding: 1rem;
+    }
+
+    .order-list-item {
+        border: 1px solid #eee;
+        margin: 2rem 0;
+    }
+
+    .order-list-item .header {
+        background-color: #f4f6f8;
+        color: #999;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .order-list-item .header .time {
+        margin-right: 2rem;
+    }
+
+    .order-list-item .body {
+        padding: 1rem;
+    }
+
+    .order-number {
+        color: #333;
+    }
+
+    .order-movie {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin: 1rem 0;
+    }
+
+    .order-movie + .order-movie {
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+    }
+
+    .order-movie figure {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .order-movie figure img {
+        display: block;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .total-price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #e4393c;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 2rem;
+    }
+</style>
+
+<main class="container">
+    <ol class="breadcrumb">
+        <li><a href="{:url('/')}">首页</a></li>
+        <li><a href="{:url('/')}">电影列表</a></li>
+        <li class="active">订单列表</li>
+    </ol>
+    <div class="order">
+        <h1>订单列表</h1>
+        <div class="order-list">
+            <?php foreach($list as $order) { ?>
+            <div class="order-list-item">
+                <div class="header">
+                    <span class="time">{$order.createtime|date='Y-m-d H:i:s',###}</span>
+                    订单号：<span class="order-number">{$order.id}</span>
+                </div>
+                <div class="body">
+                    <?php $total = 0; ?>
+                    <?php foreach($order['order_items'] as $item) { ?>
+                    <div class="order-movie">
+                        <a href="{:url('/index/movie/detail', ['id' => $item['movie']['id']])}">
+                            <figure>
+                                <img src="{$item.movie.image}" alt="">
+                                <figcaption>{$item.movie.title}</figcaption>
+                            </figure>
+                        </a>
+                        <div>
+                            <div>数量：{$item.count}</div>
+                            <div>单价：¥{$item.movie.price}</div>
+                            <div>小计：¥<?= $item['count'] * $item['movie']['price'] ?></div>
+                        </div>
+                        <?php $total += $item['count'] * $item['movie']['price']; ?>
+                    </div>
+                    <?php } ?>
+                </div>
+                <div class="footer">
+                    <span>总计：<span class="total-price">¥<span>{$total}</span></span></span>
+                    <span>状态：
+                        {if condition=" $order.status eq '0' " }
+                        <span class="label label-danger"
+                              style="font-size: 1.5rem">{$order.status_text}</span>
+                        {elseif condition=" $order.status eq '1' " }
+                        <span class="label label-warning"
+                              style="font-size: 1.5rem">{$order.status_text}</span>
+                        {elseif condition=" $order.status eq '2' " }
+                        <span class="label label-success"
+                              style="font-size: 1.5rem">{$order.status_text}</span>
+                        {/if}
+                        </span>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+</main>
