@@ -1,4 +1,56 @@
+<style>
+    .movie-grid {
+        margin: 2rem 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .movie-grid-item {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-grid-item img {
+        flex: 1;
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .movie-grid-item-text {
+        padding: 1rem;
+    }
+
+    .movie-grid-item-text h4 {
+        margin: 0.5rem 0;
+        font-weight: 700;
+    }
+</style>
+
 <main class="container">
-    <h1>{$site.name|htmlentities}</h1>
-    <a href="{:url('index/user/index', '', false, true)}">{:__('Member center')}</a>
+    <h1>电影列表</h1>
+    <div class="movie-grid">
+        <?php foreach ($movies as $movie): ?>
+        <div class="movie-grid-item">
+            <img src="<?= $movie['image'] ?>" alt="">
+            <div class="movie-grid-item-text">
+                <div>
+                    <span class="label label-primary"><?= $movie['category']['name'] ?></span>
+                </div>
+                <h4><?= $movie['title'] ?></h4>
+                <div>
+                    <?php $tags = explode(',', $movie['tags']); ?>
+                    <?php foreach ($tags as $tag): ?>
+                    <span class="label label-success"><?= $tag ?></span>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
 </main>

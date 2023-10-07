@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'Category_id'    => '分类ID(单选)',
+    'Category_ids'   => '分类ID(多选)',
+    'Tags'           => '标签',
+    'Flag'           => '标志(多选)',
+    'Flag hot'       => '热门',
+    'Flag index'     => '首页',
+    'Flag recommend' => '推荐',
+    'Title'          => '标题',
+    'Content'        => '内容',
+    'Image'          => '图片',
+    'Images'         => '图片组',
+    'Json'           => '配置',
+    'Json key'       => '名称',
+    'Json value'     => '值',
+    'Price'          => '价格',
+    'Views'          => '点击',
+    'Startdate'      => '开始日期',
+    'Refreshtime'    => '刷新时间',
+    'Createtime'     => '创建时间',
+    'Updatetime'     => '更新时间',
+    'Deletetime'     => '删除时间',
+    'Weigh'          => '权重',
+    'Switch'         => '开关',
+    'Status'         => '状态',
+    'State'          => '状态值',
+    'State 0'        => '禁用',
+    'State 1'        => '正常',
+    'State 2'        => '推荐'
+];

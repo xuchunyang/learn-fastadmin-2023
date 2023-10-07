@@ -3,6 +3,8 @@
 namespace app\index\controller;
 
 use app\common\controller\Frontend;
+use app\index\model\Movie;
+use think\Db;
 
 class Index extends Frontend
 {
@@ -13,6 +15,9 @@ class Index extends Frontend
 
     public function index()
     {
+        $movies = Movie::with('category')->select();
+        // return json($movies);
+        $this->view->assign('movies', $movies);
         $this->view->assign('title', __('Home'));
         return $this->view->fetch();
     }
