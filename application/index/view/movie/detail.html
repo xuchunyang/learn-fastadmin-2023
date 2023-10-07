@@ -1,0 +1,75 @@
+<style>
+    .movie {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin: 2rem 0;
+    }
+
+    .movie .info > * + * {
+        margin-top: 1rem;
+    }
+
+    .movie .price-wrap {
+        color: #e4393c;
+        font-size: 2rem;
+    }
+
+    .movie .price-wrap .price {
+        font-weight: bold;
+        font-size: 3.5rem;
+        margin-left: 0.5rem;
+    }
+
+    .movie .intro {
+        display: flex;
+        max-width: 400px;
+    }
+
+    .movie .buy {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .movie .buy input[type="number"] {
+        height: auto;
+        width: 60px;
+        font-size: 2rem;
+    }
+
+    .movie .buy button[type="submit"] {
+        padding: 0.5em 1.5em;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+
+<main class="container">
+    <ol class="breadcrumb">
+        <li><a href="{:url('/')}">电影列表</a></li>
+        <li class="active">电影详情</li>
+    </ol>
+    <h1>{$movie.title}</h1>
+    <div class="movie">
+        <div class="image">
+            <img src="{$movie.image}" alt="">
+        </div>
+        <div class="info">
+            <div>分类：<span class="label label-primary">{$movie.category.name}</span></div>
+            <div>标签：
+                <?php $tags = explode(',', $movie['tags']); ?>
+                <?php foreach ($tags as $tag): ?>
+                <span class="label label-success"><?= $tag ?></span>
+                <?php endforeach; ?>
+            </div>
+            <div class="intro"><span style="word-break: keep-all;">介绍：</span>
+                <div>{$movie.content|trim}</div>
+            </div>
+            <div>价格：<span class="price-wrap">¥<span class="price">{$movie.price}</span></span></div>
+            <form class="buy">
+                <input type="number" value="1" class="form-control" name="count" min="1" max="99">
+                <button type="submit" class="btn btn-danger">加入购物车</button>
+            </form>
+        </div>
+    </div>
+</main>

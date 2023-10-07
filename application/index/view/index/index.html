@@ -13,6 +13,7 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
+        color: currentColor;
     }
 
     .movie-grid-item img {
@@ -20,9 +21,17 @@
         display: block;
         max-width: 100%;
         height: auto;
+        transition: transform 150ms;
+    }
+
+    .movie-grid-item:hover img {
+        transform: scale(1.1);
     }
 
     .movie-grid-item-text {
+        background-color: #fff;
+        position: relative;
+        z-index: 1;
         padding: 1rem;
     }
 
@@ -36,7 +45,7 @@
     <h1>电影列表</h1>
     <div class="movie-grid">
         <?php foreach ($movies as $movie): ?>
-        <div class="movie-grid-item">
+        <a class="movie-grid-item" href="{:url('index/movie/detail', ['id' => $movie['id']])}">
             <img src="<?= $movie['image'] ?>" alt="">
             <div class="movie-grid-item-text">
                 <div>
@@ -50,7 +59,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-        </div>
+        </a>
         <?php endforeach; ?>
     </div>
 </main>
