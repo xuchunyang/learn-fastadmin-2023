@@ -95,3 +95,9 @@ CREATE TABLE `fa_order_item`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 ```
+
+## 订单系统的已知问题
+
+### 后台订单列表没有显示产品信息
+
+还应该显示订购者的姓名，而不是数字，这里关联的关系，我还不完全弄明白 FastAdmin 的表格是如何定制的。
