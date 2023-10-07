@@ -8,6 +8,7 @@ use think\Controller;
 use think\Hook;
 use think\Lang;
 use think\Loader;
+use think\Session;
 use think\Validate;
 
 /**
@@ -119,6 +120,8 @@ class Frontend extends Controller
         $this->loadlang($controllername);
         $this->assign('site', $site);
         $this->assign('config', $config);
+
+        $this->view->assign('message', Session::get('message'));
     }
 
     /**

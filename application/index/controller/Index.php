@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\common\controller\Frontend;
 use app\index\model\Movie;
+use think\Session;
 
 class Index extends Frontend
 {
@@ -18,6 +19,7 @@ class Index extends Frontend
         // return json($movies);
         $this->view->assign('movies', $movies);
         $this->view->assign('title', __('Home'));
+
         return $this->view->fetch();
     }
 

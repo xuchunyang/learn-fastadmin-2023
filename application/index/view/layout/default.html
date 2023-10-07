@@ -21,6 +21,7 @@
                 <div class="collapse navbar-collapse" id="header-navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{:url('/')}"><i class="fa fa-home" style="font-size:14px;"></i> {:__('Home')}</a></li>
+                        <li><a href="{:url('/index/cart')}"><i class="fa fa-shopping-cart" style="font-size:14px;"></i> 购物车</a></li>
                         <li><a href="/fastadmin.php" target="_blank"><i class="fa fa-external-link" style="font-size:14px;"></i> {:__('Admin')}</a></li>
                         <li class="dropdown">
                             {if $user}
@@ -48,6 +49,11 @@
                 </div>
             </div>
         </nav>
+
+        <?php if ($message ?? false) { ?>
+        <div class="alert alert-success" role="alert">{$message}</div>
+        <?php } ?>
+
 
         <main class="content">
             {__CONTENT__}

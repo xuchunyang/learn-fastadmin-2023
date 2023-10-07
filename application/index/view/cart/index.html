@@ -1,0 +1,103 @@
+<style>
+    .cart {
+        background-color: #fff;
+        padding: 2rem 1rem;
+    }
+
+    .cart figure {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .cart figure img {
+        display: block;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .cart figure figcaption {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .total-price {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #e4393c;
+    }
+
+    .settle-btn {
+        padding: 0.5em 1.5em;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .settle {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+</style>
+
+<main class="container">
+    <ol class="breadcrumb">
+        <li><a href="{:url('/')}">首页</a></li>
+        <li><a href="{:url('/')}">电影列表</a></li>
+        <li class="active">购物车</li>
+    </ol>
+    <div class="cart">
+        <h1>购物车</h1>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>电影</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $total = 0; ?>
+            <?php foreach($list as $item) { ?>
+            <tr>
+                <th>{$item.id}</th>
+                <td>
+                    <a href="{:url('/index/movie/detail', ['id' => $item['id']])}">
+                        <figure>
+                            <img src="{$item.image}" alt="">
+                            <figcaption>{$item.title}</figcaption>
+                        </figure>
+                    </a>
+                </td>
+                <td>
+                    ¥{$item.price}
+                </td>
+                <td>
+                    {$item.count}
+                </td>
+                <td class="text-bold">
+                    ¥<?= $item['price'] * $item['count'] ?>
+                </td>
+                <?php $total += $item['price'] * $item['count']; ?>
+                <td>
+                    <form action="{:url('cart/delete')}" method="post">
+                        <input type="hidden" name="id" value="{$item.id}">
+                        <button type="submit" class="btn btn-danger">删除</button>
+                    </form>
+                </td>
+            </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+        <div class="settle">
+            <div>
+                总价：<span class="total-price">¥<?= $total ?></span>
+            </div>
+            <button class="btn btn-danger settle-btn">去结算</button>
+        </div>
+    </div>
+
+</main>

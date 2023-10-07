@@ -66,7 +66,8 @@
                 <div>{$movie.content|trim}</div>
             </div>
             <div>价格：<span class="price-wrap">¥<span class="price">{$movie.price}</span></span></div>
-            <form class="buy">
+            <form class="buy" method="post" action="{:url('/index/movie/buy')}">
+                <input type="hidden" name="movie_id" value="{$movie.id}">
                 <input type="number" value="1" class="form-control" name="count" min="1" max="99">
                 <button type="submit" class="btn btn-danger">加入购物车</button>
             </form>
