@@ -1,21 +1,4 @@
-# 学习 FastAdmin
-
-## 项目：订单系统
-
-### 项目说明
-
-我实现了一个简单的订单系统，用来订电影票的。
-
-用户：从前台查看电影信息、加入购物车、下订单、查看订单状态。
-
-![](./screenshots/home.png)
-![](./screenshots/home-cart.png)
-![](./screenshots/home-order.png)
-
-管理员：从后台录入电影信息、查看用户的订单、编辑订单状态。
-
-![](./screenshots/admin-movie.png)
-![](./screenshots/admin-order.png)
+# 学习 [FastAdmin](https://www.fastadmin.net/)
 
 ## 测试网址
 
@@ -37,7 +20,24 @@ https://learn-fastadmin-2023.hcloudcs.com/
 FastAdmin 从 Git 源代码部署有困难，比如官方文档没有介绍，只有从压缩包部署才有介绍。我自己在本地开发后，部署也是从压缩包部署的，因为源代码中缺少了部署文件，比如
 vendor thinkphp 目录等。我也不清楚最佳部署实践是什么。
 
-## 订单系统的数据库表结构
+## 项目一：订单系统
+
+### 项目说明
+
+我实现了一个简单的订单系统，用来订电影票的。
+
+用户：从前台查看电影信息、加入购物车、下订单、查看订单状态。
+
+![](./screenshots/home.png)
+![](./screenshots/home-cart.png)
+![](./screenshots/home-order.png)
+
+管理员：从后台录入电影信息、查看用户的订单、编辑订单状态。
+
+![](./screenshots/admin-movie.png)
+![](./screenshots/admin-order.png)
+
+### 数据库表结构
 
 FastAdmin 从数据库中生成后台的 CRUD 表单，订单系统的数据库表结构如下：
 
@@ -96,8 +96,13 @@ CREATE TABLE `fa_order_item`
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 ```
 
-## 订单系统的已知问题
+### 已知问题
 
-### 后台订单列表没有显示产品信息
+- [ ] 后台订单列表没有显示订购者用户名，需要加载关联并显示
+- [ ] 后台订单列表没有显示订购的电影名称，同上
 
-还应该显示订购者的姓名，而不是数字，这里关联的关系，我还不完全弄明白 FastAdmin 的表格是如何定制的。
+## 项目二：CMS 系统
+
+### 待实现功能
+
+- [ ] 树状分类，类似官方自带的 Category 模块，需要使用到 `\fast\Tree` 类
